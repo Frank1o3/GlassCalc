@@ -11,7 +11,7 @@ Open **Actions → Build Android APK → Run workflow**. The workflow is manual-
 - Standard and scientific calculator with expression history, parentheses, powers, modulo, square roots, trigonometry (degrees), and logarithms.
 - Financial calculators:
   - Simple and compound interest with configurable compounding frequency.
-  - Loan amortization estimates with monthly payment, total repayment, total interest, and a first-year schedule preview.
+  - Loan amortization estimates with monthly payment, total repayment, and total interest.
   - Reverse compound-interest rate, ROI, investment growth with recurring monthly contributions, present value, and future value.
   - Savings-goal calculator for the monthly contribution needed to reach a target.
   - VAT/tax calculator with tax-exclusive and tax-inclusive modes.

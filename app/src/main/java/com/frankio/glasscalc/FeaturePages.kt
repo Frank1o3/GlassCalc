@@ -175,6 +175,7 @@ fun EnhancedConvertPage(currency:String,metric:Boolean) {
     var to by remember { mutableStateOf(if(metric) "Meter" else "Foot") }
     var money by remember { mutableStateOf(false) }
     var source by remember { mutableStateOf(currency) }
+    LaunchedEffect(currency) { source = currency }
     var destination by remember { mutableStateOf("USD") }
     val ctx= LocalContext.current
     val prefs=remember(ctx){ctx.getSharedPreferences("rates",0)}

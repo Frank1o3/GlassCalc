@@ -239,12 +239,14 @@ fun EnhancedToolsPage(metric:Boolean,currency:String) {
     var birth by remember { mutableStateOf("2000-01-01") }
     var start by remember { mutableStateOf("2026-01-01") }
     var end by remember { mutableStateOf("2026-12-31") }
+    var offsetDays by remember { mutableStateOf("30") }
     val bmi=if(metric) v(weight)/v(height,1.0).pow(2) else v(weight)*703/v(height,1.0).pow(2)
     val percentValue=v(amount)*v(percent)/100
     val tipValue=v(bill)*v(tip)/100
     val split=(v(bill)+tipValue)/v(people,1.0).coerceAtLeast(1.0)
     val age=runCatching{Period.between(LocalDate.parse(birth),LocalDate.now()).let{"${it.years} years, ${it.months} months, ${it.days} days"}}.getOrNull()
     val days=runCatching{ChronoUnit.DAYS.between(LocalDate.parse(start),LocalDate.parse(end))}.getOrNull()
+    val offsetDate=runCatching{LocalDate.parse(start).plusDays(v(offsetDays).toLong())}.getOrNull()
     FScreen {
         FHeading("Everyday tools","Quick calculations for daily use")
         FCard {
@@ -281,6 +283,8 @@ fun EnhancedToolsPage(metric:Boolean,currency:String) {
             FField("Start date (YYYY-MM-DD)",start){start=it}
             FField("End date (YYYY-MM-DD)",end){end=it}
             FResult("Difference",days?.let{"$it days"}?:"Enter valid dates")
+            FField("Add / subtract days from start date",offsetDays){offsetDays=it}
+            FResult("Calculated date",offsetDate?.toString()?:"Enter a valid start date")
         }
         Spacer(Modifier.height(16.dp))
     }

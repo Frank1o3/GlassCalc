@@ -71,10 +71,12 @@ class RateWorker(ctx: android.content.Context, params: WorkerParameters) : Worke
 
 @Composable
 private fun GlassCalcApp() {
+ val context = LocalContext.current
+ val settings = remember(context) { context.getSharedPreferences("settings", 0) }
  var page by remember { mutableStateOf("Calculator") }
- var country by remember { mutableStateOf("Dominican Republic") }
- var currency by remember { mutableStateOf("DOP") }
- var metric by remember { mutableStateOf(true) }
+ var country by remember { mutableStateOf(settings.getString("country", "Dominican Republic") ?: "Dominican Republic") }
+ var currency by remember { mutableStateOf(settings.getString("currency", "DOP") ?: "DOP") }
+ var metric by remember { mutableStateOf(settings.getBoolean("metric", true)) }
  MaterialTheme(colorScheme = darkColorScheme(primary = PURPLE, secondary = AQUA, background = BG, surface = PANEL)) {
   Box(Modifier.fillMaxSize().background(Brush.linearGradient(listOf(Color(0xFF1B1D31), BG, Color(0xFF10212A))))) {
    Column(Modifier.fillMaxSize().statusBarsPadding().navigationBarsPadding()) {
@@ -91,7 +93,7 @@ private fun GlassCalcApp() {
       "Finance" -> EnhancedFinancePage(currency)
       "Convert" -> EnhancedConvertPage(currency, metric)
       "Tools" -> EnhancedToolsPage(metric, currency)
-      else -> EnhancedSettingsPage(country, currency, metric, { country = it; currency = currencyFor(it); metric = it !in listOf("United States", "Liberia", "Myanmar") }, { currency = it })
+      else -> EnhancedSettingsPage(country, currency, metric, { selected -> country = selected; currency = currencyFor(selected); metric = selected !in listOf("United States", "Liberia", "Myanmar"); settings.edit().putString("country", selected).putString("currency", currency).putBoolean("metric", metric).apply() }, { selectedCurrency -> currency = selectedCurrency; settings.edit().putString("currency", selectedCurrency).apply() })
      }
     }
     NavigationBar(containerColor = Color(0xEE101522)) {

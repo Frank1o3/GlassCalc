@@ -88,10 +88,10 @@ private fun GlassCalcApp() {
     AnimatedContent(page, transitionSpec = { fadeIn() togetherWith fadeOut() }, label = "page") { p ->
      when (p) {
       "Calculator" -> CalculatorPage()
-      "Finance" -> FinancePage(currency)
-      "Convert" -> ConvertPage()
-      "Tools" -> ToolsPage()
-      else -> SettingsPage(country, currency, metric, { country = it; currency = currencyFor(it); metric = it !in listOf("United States", "Liberia", "Myanmar") }, { currency = it })
+      "Finance" -> EnhancedFinancePage(currency)
+      "Convert" -> EnhancedConvertPage(currency, metric)
+      "Tools" -> EnhancedToolsPage(metric, currency)
+      else -> EnhancedSettingsPage(country, currency, metric, { country = it; currency = currencyFor(it); metric = it !in listOf("United States", "Liberia", "Myanmar") }, { currency = it })
      }
     }
     NavigationBar(containerColor = Color(0xEE101522)) {

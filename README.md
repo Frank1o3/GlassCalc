@@ -19,7 +19,7 @@ Open **Actions → Build Android APK → Run workflow**. The workflow is manual-
   - Length, weight/mass, volume, temperature, speed, time, area, digital storage, pressure, and energy.
 - Currency conversion using USD-base exchange rates from open.er-api.com, cached locally and refreshed weekly in the background.
 - Regional defaults: Dominican Republic starts with DOP and metric units. Region selection updates the default currency and measurement system.
-- Everyday tools: BMI reference calculator, age calculator, date difference/date arithmetic, percentage calculator, and tip/bill splitter.
+- Everyday tools: BMI reference calculator, age calculator, date difference, percentage calculator, and tip/bill splitter.
 - Dark glass-inspired Compose interface with animated navigation.
 
 ## Notes

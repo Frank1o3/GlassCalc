@@ -85,7 +85,7 @@ private fun GlassCalcApp() {
       Text("GLASSCALC", color = MUTED, fontSize = 10.sp, fontWeight = FontWeight.Bold, letterSpacing = 2.sp)
       Text("Precision, without friction.", color = WHITE, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
      }
-     Text(currency + " · " + country, color = AQUA, fontSize = 10.sp)
+     Text((if (currency == "DOP") "RD$ / DOP" else currency) + " · " + country, color = AQUA, fontSize = 10.sp)
     }
     AnimatedContent(page, transitionSpec = { fadeIn() togetherWith fadeOut() }, label = "page") { p ->
      when (p) {
